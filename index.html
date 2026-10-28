@@ -29,8 +29,13 @@
     <style>
         body {
             background-color: #0a192f;
+            background-image: 
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             color: #ccd6f6;
             font-family: 'Inter', sans-serif;
+            position: relative;
         }
         
         ::-webkit-scrollbar {
@@ -48,9 +53,12 @@
         }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden">
 
-    <nav class="sticky top-0 z-50 bg-[#0a192f]/90 backdrop-blur-md shadow-sm">
+    <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-accent/5 blur-[120px] -z-10 pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-500/5 blur-[120px] -z-10 pointer-events-none"></div>
+
+    <nav class="sticky top-0 z-50 bg-[#0a192f]/90 backdrop-blur-md shadow-sm border-b border-accent/10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 font-bold text-accent text-xl tracking-wider">
@@ -67,21 +75,21 @@
                 </div>
 
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-textMain hover:text-accent focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    <button id="mobile-menu-btn" class="text-textMain hover:text-accent focus:outline-none p-2" aria-label="Toggle Menu">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden bg-card">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#about" class="block px-3 py-2 text-textMain hover:text-accent transition">About</a>
-                <a href="#education" class="block px-3 py-2 text-textMain hover:text-accent transition">Education</a>
-                <a href="#certifications" class="block px-3 py-2 text-textMain hover:text-accent transition">Certifications</a>
-                <a href="#contact" class="block px-3 py-2 text-textMain hover:text-accent transition">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden absolute left-0 w-full bg-[#0a192f]/95 backdrop-blur-xl border-b border-accent/10 shadow-2xl">
+            <div class="px-4 pt-4 pb-6 space-y-2 text-center">
+                <a href="#about" class="mobile-link block px-3 py-3 text-lg font-medium text-textMain hover:text-accent hover:bg-accent/5 rounded-lg transition">About</a>
+                <a href="#education" class="mobile-link block px-3 py-3 text-lg font-medium text-textMain hover:text-accent hover:bg-accent/5 rounded-lg transition">Education</a>
+                <a href="#certifications" class="mobile-link block px-3 py-3 text-lg font-medium text-textMain hover:text-accent hover:bg-accent/5 rounded-lg transition">Certifications</a>
+                <a href="#contact" class="mobile-link block px-3 py-3 text-lg font-medium text-textMain hover:text-accent hover:bg-accent/5 rounded-lg transition">Contact</a>
             </div>
         </div>
     </nav>
@@ -92,18 +100,18 @@
             <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
                 <div class="flex-1 text-center md:text-left space-y-6">
                     <p class="text-accent font-mono">Hi, my name is</p>
-                    <h1 class="text-5xl md:text-7xl font-bold text-textMain">Carl Cedric Agad</h1>
+                    <h1 class="text-5xl md:text-7xl font-bold text-textMain drop-shadow-md">Carl Cedric Agad</h1>
                     <p class="max-w-xl text-textMuted leading-relaxed pt-4">
                         I am a 3rd Year BSIT student at Polytechnic University of the Philippines, eager to learn and gain more practical knowledge in the field of technology. 
                     </p>
                     <div class="pt-6">
-                        <a href="#contact" class="inline-block px-6 py-3 border-2 border-accent text-accent rounded hover:bg-accent/10 transition duration-300 font-mono">
+                        <a href="#contact" class="inline-block px-6 py-3 border-2 border-accent text-accent rounded hover:bg-accent hover:text-dark transition duration-300 font-mono">
                             Get In Touch
                         </a>
                     </div>
                 </div>
                 <div class="flex-shrink-0 relative">
-                    <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-card relative z-10 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-card relative z-10 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20">
                         <img src="portfoliopic.jpg" alt="Carl Cedric Agad Profile" class="w-full h-full object-cover">
                     </div>
                     <div class="absolute inset-0 border-2 border-accent rounded-full translate-x-4 translate-y-4 -z-0"></div>
@@ -117,15 +125,15 @@
             </h2>
             
             <div class="flex flex-col gap-6">
-                <div class="bg-card p-8 rounded-lg hover:-translate-y-2 hover:shadow-lg transition duration-300 group">
-                    <p class="text-accent font-mono text-sm mb-2">2024-Current</p>
-                    <h3 class="text-xl font-bold text-textMain group-hover:text-accent transition">Bachelor of Science in Information Technology</h3>
+                <div class="bg-card border border-[#233554] p-8 rounded-lg hover:-translate-y-2 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300 group">
+                    <p class="text-accent font-mono text-sm mb-2 bg-accent/10 inline-block px-3 py-1 rounded-full">2024-Current</p>
+                    <h3 class="text-xl font-bold text-textMain mt-3 group-hover:text-accent transition">Bachelor of Science in Information Technology</h3>
                     <p class="text-textMuted mt-1">Polytechnic University of the Philippines</p>
                 </div>
                 
-                <div class="bg-card p-8 rounded-lg hover:-translate-y-2 hover:shadow-lg transition duration-300 group">
-                    <p class="text-accent font-mono text-sm mb-2">2019-2024</p>
-                    <h3 class="text-xl font-bold text-textMain group-hover:text-accent transition">Science, Technology, Engineering, and Mathematics (STEM)</h3>
+                <div class="bg-card border border-[#233554] p-8 rounded-lg hover:-translate-y-2 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300 group">
+                    <p class="text-accent font-mono text-sm mb-2 bg-accent/10 inline-block px-3 py-1 rounded-full">2019-2024</p>
+                    <h3 class="text-xl font-bold text-textMain mt-3 group-hover:text-accent transition">Science, Technology, Engineering, and Mathematics (STEM)</h3>
                     <p class="text-textMuted mt-1">Arellano University - Apolinario Mabini Campus</p>
                 </div>
             </div>
@@ -136,43 +144,50 @@
                 <span class="text-accent font-mono text-xl mr-3"></span> Certifications
             </h2>
             
-            <ul class="space-y-4">
-                <li class="bg-card p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-lg transition">
-                    <div>
-                        <h3 class="text-lg font-semibold text-textMain">Introduction to Cloud</h3>
-                        <p class="text-textMuted text-sm">Cognitive Class</p>
+            <div class="flex flex-col gap-6">
+                <div class="bg-card border border-[#233554] p-6 rounded-lg flex flex-col sm:flex-row gap-6 hover:-translate-y-2 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300 group">
+                    <div class="w-full sm:w-48 h-32 flex-shrink-0 overflow-hidden rounded bg-[#0a192f] border border-[#233554]">
+                        <img src="cloudcert.jpg" alt="Intro to Cloud Certificate" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
-                    <div class="text-left md:text-right">
-                        <span class="text-accent font-mono text-sm">October 20, 2026</span>
+                    
+                    <div class="flex flex-col justify-center flex-grow">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-textMain group-hover:text-accent transition">Introduction to Cloud</h3>
+                                <p class="text-textMuted mt-1">Cognitive Class</p>
+                            </div>
+                            <div class="text-left md:text-right mt-2 md:mt-0">
+                                <span class="text-accent font-mono text-sm bg-accent/10 px-3 py-1 rounded-full">October 20, 2026</span>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </section>
 
         <section id="contact" class="py-20 mb-20">
             <h2 class="text-center text-accent font-mono text-lg mb-4">Contact</h2>
-            <h3 class="text-4xl md:text-5xl font-bold text-center text-textMain mb-6">Get In Touch</h3>
+            <h3 class="text-4xl md:text-5xl font-bold text-center text-textMain mb-6 drop-shadow-md">Get In Touch</h3>
             <p class="text-center text-textMuted max-w-md mx-auto mb-12">
                 My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
             </p>
 
             <div class="flex flex-col items-center justify-center gap-12">
-                
-                <div class="space-y-6 text-center">
+                <div class="space-y-6 text-center bg-card border border-[#233554] p-10 rounded-xl w-full max-w-lg shadow-lg">
                     <div>
-                        <p class="text-sm text-textMuted uppercase tracking-wider mb-1">Email</p>
+                        <p class="text-sm text-textMuted uppercase tracking-wider mb-1 font-mono">Email</p>
                         <a href="mailto:agadcarlcedric@gmail.com" class="text-lg text-textMain hover:text-accent transition">agadcarlcedric@gmail.com</a>
                     </div>
                     <div>
-                        <p class="text-sm text-textMuted uppercase tracking-wider mb-1">Phone</p>
+                        <p class="text-sm text-textMuted uppercase tracking-wider mb-1 font-mono">Phone</p>
                         <a href="tel:09472277085" class="text-lg text-textMain hover:text-accent transition">09472277085</a>
                     </div>
-                    <div>
-                        <p class="text-sm text-textMuted uppercase tracking-wider mb-1">Social</p>
-                        <div class="flex flex-col items-center gap-2 mt-2">
-                            <p class="text-textMuted">Facebook: <a href="https://www.facebook.com/carlcedric.agad.3?mibextid=ZbWKwL" class="text-textMain hover:text-accent transition">Carl Cedric</a></p>
-                            <p class="text-textMuted">LinkedIn: <a href="https://www.linkedin.com/in/carl-cedric-agad-777a99338/" class="text-textMain hover:text-accent transition">Carl Cedric Agad</a></p>
-                            <p class="text-textMuted">GitHub: <a href="https://github.com/carlsuuu" class="text-textMain hover:text-accent transition">carlsuuu</a></p>
+                    <div class="pt-4 border-t border-[#233554] mt-4">
+                        <p class="text-sm text-textMuted uppercase tracking-wider mb-3 font-mono">Social</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <p class="text-textMuted">Facebook: <a href="https://www.facebook.com/carlcedric.agad.3?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" class="text-textMain hover:text-accent transition underline decoration-accent/30 underline-offset-4">Carl Cedric</a></p>
+                            <p class="text-textMuted">LinkedIn: <a href="https://www.linkedin.com/in/carl-cedric-agad-777a99338/" target="_blank" rel="noopener noreferrer" class="text-textMain hover:text-accent transition underline decoration-accent/30 underline-offset-4">Carl Cedric Agad</a></p>
+                            <p class="text-textMuted">GitHub: <a href="https://github.com/carlsuuu" target="_blank" rel="noopener noreferrer" class="text-textMain hover:text-accent transition underline decoration-accent/30 underline-offset-4">carlsuuu</a></p>
                         </div>
                     </div>
                 </div>
@@ -180,5 +195,34 @@
         </section>
     </main>
 
-    <footer class="py-6 text-center text-textMuted font-mono text-sm">
-        <p>
+    <footer class="py-6 text-center text-textMuted font-mono text-sm border-t border-accent/10">
+        <p>Built by Ced. <br class="md:hidden"> Designed for the web.</p>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const iconPath = document.getElementById('menu-icon-path');
+
+        btn.addEventListener('click', () => {
+            const isHidden = menu.classList.contains('hidden');
+            
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                iconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menu.classList.add('hidden');
+                iconPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
+        });
+
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                iconPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            });
+        });
+    </script>
+</body>
+</html>
